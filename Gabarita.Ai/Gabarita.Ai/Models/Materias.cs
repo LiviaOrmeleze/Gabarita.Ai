@@ -2,7 +2,8 @@
 {
     public class Materias
     {
-        public int MateriaId { get; set; }
+        public Guid MateriaId { get; set; }
         public string MateriasNome { get; set; }
+        public TimeSpan TempoEstudo { get; set; }
     }
 }
