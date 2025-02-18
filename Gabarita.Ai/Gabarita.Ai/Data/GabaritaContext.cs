@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Gabarita.Ai.Models;
 
 namespace Gabarita.Ai.Data
 {
@@ -13,5 +14,6 @@ namespace Gabarita.Ai.Data
         {
             base.OnModelCreating(builder);
         }
+        public DbSet<Gabarita.Ai.Models.Desempenho> Desempenho { get; set; } = default!;
     }
 }
