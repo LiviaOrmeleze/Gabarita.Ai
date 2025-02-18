@@ -4,7 +4,7 @@ namespace Gabarita.Ai.Models
 {
     public class Dicionario
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Termo { get; set; }
         public string Definicao { get; set; }
         public CategoriaDicionario Categoria { get; set; } // Usando o enum
