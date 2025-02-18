@@ -16,5 +16,6 @@ namespace Gabarita.Ai.Data
         }
         public DbSet<Gabarita.Ai.Models.Dicionario> Dicionario { get; set; } = default!;
         public DbSet<Gabarita.Ai.Models.Livro> Livro { get; set; } = default!;
+        public DbSet<Gabarita.Ai.Models.Desempenho> Desempenho { get; set; } = default!;
     }
 }
