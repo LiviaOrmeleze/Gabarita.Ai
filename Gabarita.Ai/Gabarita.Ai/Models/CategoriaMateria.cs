@@ -2,7 +2,7 @@
 {
     public class CategoriaMateria
     {
-        public Guid Id { get; set; }
+        public Guid CategoriaMateriaId { get; set; }
         public string Categoria { get; set; }
     }
 }

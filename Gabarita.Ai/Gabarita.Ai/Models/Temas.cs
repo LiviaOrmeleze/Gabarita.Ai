@@ -2,7 +2,7 @@
 {
     public class Temas
     {
-        public int TemaId { get; set; }
+        public Guid TemasId { get; set; }
         public string Niveis { get; set; }
         public string Conteudos { get; set; }
     }
