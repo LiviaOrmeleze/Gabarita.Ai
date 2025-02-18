@@ -8,5 +8,6 @@
         public string Videos { get; set; }
         public string Textos { get; set; }
         public string FlashCard { get; set; }
+        public string Anotacoes { get; set; }
     }
 }
