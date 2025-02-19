@@ -16,6 +16,7 @@ namespace Gabarita.Ai.Data
         }
         public DbSet<Gabarita.Ai.Models.Planos> Planos { get; set; } = default!;
         public DbSet<Gabarita.Ai.Models.Questionario> Questionario { get; set; } = default!;
+        public DbSet<Gabarita.Ai.Models.Redacao> Redacao { get; set; } = default!;
 
     }
 }
