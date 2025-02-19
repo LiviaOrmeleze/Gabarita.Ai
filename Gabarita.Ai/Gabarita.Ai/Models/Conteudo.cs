@@ -3,8 +3,8 @@
     public class Conteudo
     {
         public Guid ConteudoId { get; set; }
-        public Guid CursoId { get; set; }
-        public Curso? Curso { get; set; }
+        public Guid ConFacuId { get; set; }
+        public ConFacu? Curso { get; set; }
         public Guid BibliotecaId { get; set; }
         public Biblioteca? Biblioteca { get; set; }
         public Guid ResumoId { get; set; }
@@ -19,7 +19,8 @@
         public Cronograma? Cronograma { get; set; }
         public Guid PlanosId { get; set; }
         public Planos? Planos { get; set; }
-
+        public Guid CalendarioConcursoId { get; set; }
+        public CalendarioConcurso? CalendarioConcurso { get; set; }
 
     }
 }

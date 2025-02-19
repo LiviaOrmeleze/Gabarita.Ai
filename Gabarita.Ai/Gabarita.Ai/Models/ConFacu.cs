@@ -1,8 +1,8 @@
 ﻿namespace Gabarita.Ai.Models
 {
-    public class Convacu
+    public class ConFacu
     {
-        public int ConvacuId { get; set; }
+        public int ConFacuId { get; set; }
         public string Nome { get; set; }
     }
 }
