@@ -1,10 +1,10 @@
 ﻿namespace Gabarita.Ai.Models
 {
-    public class Redacao
+    public class Alternativa
     {
-        public Guid RedacaoId { get; set; }
+        public Guid AlternativaId { get; set; }
         public Guid ConteudoId { get; set; }
         public string Texto { get; set; }
-        public DateTime DataSubmissao { get; set; }
+        public bool Correta { get; set; }
     }
 }
