@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Gabarita.Ai.Data;
 using Gabarita.Ai.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gabarita.Ai.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PlanosController : ControllerBase
     {
         private readonly GabaritaContext _context;
@@ -23,6 +25,7 @@ namespace Gabarita.Ai.Controllers
 
         // GET: api/Planos
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Plano>>> GetPlano()
         {
             return await _context.Plano.ToListAsync();
