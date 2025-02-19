@@ -104,5 +104,34 @@ namespace Gabarita.Ai.Controllers
         {
             return _context.Temas.Any(e => e.TemasId == id);
         }
+
+        // GET: api/Temas/ByMateria/{materiaId}
+        [HttpGet("ByMateria/{materiaId}")]
+        public async Task<ActionResult<IEnumerable<Temas>>> GetTemasByMateria(Guid materiaId)
+        {
+            var temas = await _context.Temas.Where(t => t.MateriasId == materiaId).ToListAsync();
+
+            if (temas == null || temas.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return temas;
+        }
+
+        // GET: api/Temas/ByNivel/{nivel}
+        [HttpGet("ByNivel/{nivel}")]
+        public async Task<ActionResult<IEnumerable<Temas>>> GetTemasByNivel(string nivel)
+        {
+            var temas = await _context.Temas.Where(t => t.Niveis == nivel).ToListAsync();
+
+            if (temas == null || temas.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return temas;
+        }
+
     }
 }

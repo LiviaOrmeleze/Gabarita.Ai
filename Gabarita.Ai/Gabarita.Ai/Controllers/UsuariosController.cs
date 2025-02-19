@@ -104,5 +104,34 @@ namespace Gabarita.Ai.Controllers
         {
             return _context.Usuario.Any(e => e.UsuarioId == id);
         }
+
+        // GET: api/Usuarios/ByEmail/{email}
+        [HttpGet("ByEmail/{email}")]
+        public async Task<ActionResult<Usuario>> GetUsuarioByEmail(string email)
+        {
+            var usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.Email == email);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return usuario;
+        }
+
+        // GET: api/Usuarios/ByName/{name}
+        [HttpGet("ByName/{name}")]
+        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarioByName(string name)
+        {
+            var usuarios = await _context.Usuario.Where(u => u.Nome.Contains(name)).ToListAsync();
+
+            if (usuarios == null || usuarios.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return usuarios;
+        }
+
     }
 }
