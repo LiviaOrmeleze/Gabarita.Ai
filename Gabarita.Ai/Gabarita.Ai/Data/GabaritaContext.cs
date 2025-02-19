@@ -10,10 +10,12 @@ namespace Gabarita.Ai.Data
         {
         }
 
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
         }
+        public DbSet<Gabarita.Ai.Models.Alternativa> Alternativa { get; set; } = default!;
 
 
     }

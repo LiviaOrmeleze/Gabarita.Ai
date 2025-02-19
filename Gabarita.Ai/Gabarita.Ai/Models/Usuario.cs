@@ -1,4 +1,6 @@
-﻿namespace Gabarita.Ai.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace Gabarita.Ai.Models
 {
     public class Usuario
     {
@@ -9,5 +11,7 @@
         public DateTime DataCriacao { get; set; }
         public string TipoUsuario { get; set; }
         public Guid? ConcursoId { get; set; }
+        public Guid? UserId { get; set; }
+        public IdentityUser User { get; set; }
     }
 }
