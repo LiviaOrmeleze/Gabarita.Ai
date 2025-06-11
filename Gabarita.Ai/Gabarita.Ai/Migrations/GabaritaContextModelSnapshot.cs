@@ -40,7 +40,7 @@ namespace Gabarita.Ai.Migrations
 
                     b.HasKey("AlternativaId");
 
-                    b.ToTable("Alternativa");
+                    b.ToTable("Alternativa", (string)null);
                 });
 
             modelBuilder.Entity("Gabarita.Ai.Models.Concurso", b =>
@@ -61,7 +61,7 @@ namespace Gabarita.Ai.Migrations
 
                     b.HasKey("ConcursoId");
 
-                    b.ToTable("Concurso");
+                    b.ToTable("Concurso", (string)null);
                 });
 
             modelBuilder.Entity("Gabarita.Ai.Models.Conteudo", b =>
@@ -89,7 +89,7 @@ namespace Gabarita.Ai.Migrations
 
                     b.HasKey("ConteudoId");
 
-                    b.ToTable("Conteudo");
+                    b.ToTable("Conteudo", (string)null);
                 });
 
             modelBuilder.Entity("Gabarita.Ai.Models.Cronograma", b =>
@@ -113,7 +113,7 @@ namespace Gabarita.Ai.Migrations
 
                     b.HasKey("CronogramaId");
 
-                    b.ToTable("Cronograma");
+                    b.ToTable("Cronograma", (string)null);
                 });
 
             modelBuilder.Entity("Gabarita.Ai.Models.Pagamento", b =>
@@ -136,7 +136,7 @@ namespace Gabarita.Ai.Migrations
 
                     b.HasKey("PagamentoId");
 
-                    b.ToTable("Pagamento");
+                    b.ToTable("Pagamento", (string)null);
                 });
 
             modelBuilder.Entity("Gabarita.Ai.Models.Plano", b =>
@@ -158,7 +158,7 @@ namespace Gabarita.Ai.Migrations
 
                     b.HasKey("PlanoId");
 
-                    b.ToTable("Plano");
+                    b.ToTable("Plano", (string)null);
                 });
 
             modelBuilder.Entity("Gabarita.Ai.Models.Redacao", b =>
@@ -179,7 +179,7 @@ namespace Gabarita.Ai.Migrations
 
                     b.HasKey("RedacaoId");
 
-                    b.ToTable("Redacao");
+                    b.ToTable("Redacao", (string)null);
                 });
 
             modelBuilder.Entity("Gabarita.Ai.Models.TipoConteudo", b =>
@@ -194,7 +194,7 @@ namespace Gabarita.Ai.Migrations
 
                     b.HasKey("TipoConteudoId");
 
-                    b.ToTable("TipoConteudo");
+                    b.ToTable("TipoConteudo", (string)null);
                 });
 
             modelBuilder.Entity("Gabarita.Ai.Models.TipoVestibulando", b =>
@@ -209,49 +209,7 @@ namespace Gabarita.Ai.Migrations
 
                     b.HasKey("TipoVestibulandoId");
 
-                    b.ToTable("TipoVestibulando");
-                });
-
-            modelBuilder.Entity("Gabarita.Ai.Models.Usuario", b =>
-                {
-                    b.Property<Guid>("UsuarioId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ConcursoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SenhaHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TipoUsuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("UserId1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UsuarioId");
-
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("Usuario");
+                    b.ToTable("TipoVestibulando", (string)null);
                 });
 
             modelBuilder.Entity("Gabarita.Ai.Models.Vestibulando", b =>
@@ -268,7 +226,7 @@ namespace Gabarita.Ai.Migrations
 
                     b.HasKey("VestibulandoId");
 
-                    b.ToTable("Vestibulando");
+                    b.ToTable("Vestibulando", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -335,6 +293,11 @@ namespace Gabarita.Ai.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -386,6 +349,10 @@ namespace Gabarita.Ai.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator().HasValue("IdentityUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -471,13 +438,38 @@ namespace Gabarita.Ai.Migrations
 
             modelBuilder.Entity("Gabarita.Ai.Models.Usuario", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Navigation("User");
+                    b.Property<Guid?>("ConcursoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NomeCompleto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipoUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UserId1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasIndex("UserId1");
+
+                    b.HasDiscriminator().HasValue("Usuario");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -529,6 +521,17 @@ namespace Gabarita.Ai.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Gabarita.Ai.Models.Usuario", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
